@@ -20,11 +20,11 @@ def upload_image():
     image_file = request.files['file']
     filename = secure_filename(image_file.filename)
     image_file.save(os.path.join('static/' , filename))
-    Image = Image.open(image_file)
+    image = Image.open(image_file)
     image.thumbnail((width , height))
     image.save(os.path.join('static/' , filename))
     return render_template('upload.html' , filename=filename)
-@app.route('/display/<filename>')
+@app.route('/display_image/<filename>')
 def display_image(filename):
     return redirect(url_for('static', filename=filename))
 
